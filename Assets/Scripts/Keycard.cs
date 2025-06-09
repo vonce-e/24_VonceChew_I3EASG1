@@ -32,16 +32,22 @@ public class Keycard : MonoBehaviour
         if (keycardColor == Keycardcolor.Red)
         {
             GameManager.Instance.redKeycardCollected = true;
+            GameManager.Instance.redKeyCardCheckbox.gameObject.SetActive(true); //Deactivates the red keycard checkbox in the UI
+            GameManager.Instance.redKeyCardText.color = Color.green; //Changes the text color of the red keycard to green in the UI
         }
 
         else if (keycardColor == Keycardcolor.Blue)
         {
             GameManager.Instance.blueKeycardCollected = true;
+            GameManager.Instance.blueKeyCardCheckbox.SetActive(true); //Activates the blue keycard checkbox in the UI
+            GameManager.Instance.blueKeyCardText.color = Color.green; //Changes the text color of the blue keycard to green in the UI
         }
 
         else if (keycardColor == Keycardcolor.Green)
         {
             GameManager.Instance.greenKeycardCollected = true;
+            GameManager.Instance.greenKeyCardCheckbox.SetActive(true); //Activates the keycard checkbox in the UI
+            GameManager.Instance.greenKeyCardText.color = Color.green; //Changes the text color of the green keycard to green in the UI
         }
 
         // Increment points in GameManager

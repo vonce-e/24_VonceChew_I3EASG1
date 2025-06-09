@@ -10,10 +10,14 @@ using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    //Raycasting variables
     public Transform playerCamera; //Gets location of player camera
     public float interactionDistance = 5f; //Sets the distance for raycast interactions
+
+    //UI elements   
     public TMP_Text interactionText; //Displays text for interaction prompts
 
+    //Variables to store current collectible items
     private Collectibles currentCollectible; //Stores the current collectible item
     private Keycard currentKeycard; //Stores the current keycard item
     private SpecialCollectible currentSpecial; //Stores the current special collectible item
@@ -72,6 +76,7 @@ public class PlayerInteraction : MonoBehaviour
 
 
     }
+
 
     public void OnInteract()
     {
