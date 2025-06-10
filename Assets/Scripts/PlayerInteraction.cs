@@ -22,6 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     private Keycard currentKeycard; //Stores the current keycard item
     private SpecialCollectible currentSpecial; //Stores the current special collectible item
     private Door currentDoor; //Stores the current door item
+    public Medkit currentMedkit; //Stores the current medkit item   
 
     Door CurrentDoor; //Stores door variable
 
@@ -80,6 +81,18 @@ public class PlayerInteraction : MonoBehaviour
                 currentDoor = null; //currentDoor set to null since there is no door in sight
             }
 
+            //Checks if the raycast hit a Medkit
+            if (hitInfo.transform.TryGetComponent(out currentMedkit))
+            {
+                interactionText.gameObject.SetActive(true); //Activates the interaction text
+                interactionText.text = "Press E to heal"; //Sets the interaction text
+            }
+
+            else
+            {
+                currentMedkit = null; //currentMedkit set to null since there is no medkit in sight
+            }
+
         }
 
         else
@@ -89,7 +102,6 @@ public class PlayerInteraction : MonoBehaviour
             currentKeycard = null; //currentKeycard set to null since there is no keycard in sight
             currentSpecial = null; //currentSpecial set to null since there is no collectible in sight
         }
-
 
     }
 
@@ -117,6 +129,12 @@ public class PlayerInteraction : MonoBehaviour
         if (CurrentDoor != null) //Checks if the player is interacting with a door
         {
             CurrentDoor.InteractDoor(); //Calls the InteractDoor method on the current Door
+        }
+
+        if (currentMedkit != null)
+        {
+            currentMedkit.Interact(); //Calls the Collect method on the current Medkit
+            interactionText.gameObject.SetActive(false); //Deactivates the interaction text after collection
         }
     }
 

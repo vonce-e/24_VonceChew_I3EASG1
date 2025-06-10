@@ -59,4 +59,9 @@ public class Keycard : MonoBehaviour
         //Destroys keycard after collection
         Destroy(gameObject);
     }
+    void Update()
+    {
+        //Make Keycard spin
+        transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
+    }
 }

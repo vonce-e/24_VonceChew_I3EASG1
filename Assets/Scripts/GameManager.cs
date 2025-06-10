@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject greenKeyCardCheckbox; //Checkbox for green keycard
 
     public int points = 0; //Player's points
-    public int health = 100; //Player's health
+    public float health = 100; //Player's health
     public int lives = 3; //Number of lives the player has
     public int specialCollectibles; //Number of special collectibles collected  
     public bool allSpecialCollectibleCollected = false; //Status of special collectible collection
@@ -47,6 +47,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text doorLockedHeaderMessage; //UI Text to display door locked header message
     public TMP_Text doorLockedMessage; //UI Text to display door locked message
     public GameObject doorLockedPanel; //UI Panel for door locked messages
+
+    public TMP_Text warningText; //UI Text for warning background
+    public GameObject warningPanel; //UI Panel for warning messages
 
     private void Awake()
     {
@@ -72,12 +75,12 @@ public class GameManager : MonoBehaviour
 
             HealthUpdate(); //Updates the health UI
             LivesUpdate(); //Updates the lives UI
-
+            
             Debug.Log("You have " + lives + " lives left."); //Logs the number of lives left
 
             if (lives <= 0) //Checks if there are no lives left
             {
-                Debug.Log("Game Over!"); //Logs game over message
+                Debug.Log("Game Over!"); //Logs game over message   
                 //Game over logic
             }
         }

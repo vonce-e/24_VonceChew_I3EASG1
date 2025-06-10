@@ -1,11 +1,11 @@
 /*
  * Author : Vonce Chew
- * Date of Creation : 9th June 2025
- * Script Function : Collectibles script that handles functions of the collectibles in the game, such as collecting items and updating points.
+ * Date of Creation : 10th June 2025
+ * Script Function : Medkit script that handles function of the Medkits in the game.
  */
 
 using UnityEngine;
-public class Collectibles : MonoBehaviour
+public class Medkit : MonoBehaviour
 {
     public void Interact()
     {
@@ -13,12 +13,10 @@ public class Collectibles : MonoBehaviour
         Debug.Log(gameObject.name + "collected.");
 
         // Increment points in GameManager
-        GameManager.Instance.points += 10;
+        GameManager.Instance.health += 25;
 
         // Update points display in GameManager
-        GameManager.Instance.PointsUpdate();
-
-
+        GameManager.Instance.HealthUpdate();
 
         //Destroys collectible after collection
         Destroy(gameObject);
@@ -26,7 +24,7 @@ public class Collectibles : MonoBehaviour
 
     void Update()
     {
-        //Make coin spin
+        //Make Medkit spin
         transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
     }
 }

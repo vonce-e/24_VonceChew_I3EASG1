@@ -36,4 +36,9 @@ public class SpecialCollectible : MonoBehaviour
         //Destroys collectible after collection
         Destroy(gameObject);
     }
+    void Update()
+    {
+        //Make Special Item spin
+        transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
+    }
 }
