@@ -22,7 +22,7 @@ public class PlayerInteraction : MonoBehaviour
     private Keycard currentKeycard; //Stores the current keycard item
     private SpecialCollectible currentSpecial; //Stores the current special collectible item
     private Door currentDoor; //Stores the current door item
-    public Medkit currentMedkit; //Stores the current medkit item   
+    private Medkit currentMedkit; //Stores the current medkit item   
 
     Door CurrentDoor; //Stores door variable
 
