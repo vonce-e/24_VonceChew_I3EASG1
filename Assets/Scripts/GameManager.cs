@@ -44,6 +44,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text blueKeyCardText; //UI Text to display blue keycard status   
     public TMP_Text greenKeyCardText; //UI Text to display green keycard status
 
+    public TMP_Text doorLockedHeaderMessage; //UI Text to display door locked header message
+    public TMP_Text doorLockedMessage; //UI Text to display door locked message
+    public GameObject doorLockedPanel; //UI Panel for door locked messages
+
     private void Awake()
     {
         //Singleton pattern to ensure only one instance of GameManager exists

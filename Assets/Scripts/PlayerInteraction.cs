@@ -17,10 +17,13 @@ public class PlayerInteraction : MonoBehaviour
     //UI elements   
     public TMP_Text interactionText; //Displays text for interaction prompts
 
-    //Variables to store current collectible items
+    //Variables
     private Collectibles currentCollectible; //Stores the current collectible item
     private Keycard currentKeycard; //Stores the current keycard item
     private SpecialCollectible currentSpecial; //Stores the current special collectible item
+    private Door currentDoor; //Stores the current door item
+
+    Door CurrentDoor; //Stores door variable
 
     void Update()
     {
@@ -45,7 +48,7 @@ public class PlayerInteraction : MonoBehaviour
             if (hitInfo.transform.TryGetComponent(out currentKeycard))
             {
                 interactionText.gameObject.SetActive(true); //Activates the interaction text
-                interactionText.text = "Press E to collect"; //Sets the interaction text
+                interactionText.text = "Press E to collect the keycard"; //Sets the interaction text
             }
 
             else
@@ -57,13 +60,26 @@ public class PlayerInteraction : MonoBehaviour
             if (hitInfo.transform.TryGetComponent(out currentSpecial))
             {
                 interactionText.gameObject.SetActive(true); //Activates the interaction text
-                interactionText.text = "Press E to collect"; //Sets the interaction text
+                interactionText.text = "Press E to collect the special item"; //Sets the interaction text
             }
 
             else
             {
                 currentSpecial = null; //currentSpecial set to null since there is no collectible in sight
             }
+
+            //Checks if the raycast hit a door
+            if (hitInfo.transform.TryGetComponent(out currentDoor))
+            {
+                interactionText.gameObject.SetActive(true); //Activates the interaction text
+                interactionText.text = "Press E to interact"; //Sets the interaction text
+            }
+
+            else
+            {
+                currentDoor = null; //currentDoor set to null since there is no door in sight
+            }
+
         }
 
         else
@@ -97,5 +113,16 @@ public class PlayerInteraction : MonoBehaviour
             currentSpecial.Interact(); //Calls the Collect method on the current Special Collectible
             interactionText.gameObject.SetActive(false); //Deactivates the interaction text after collection
         }
-    }   
+
+        if (CurrentDoor != null) //Checks if the player is interacting with a door
+        {
+            CurrentDoor.InteractDoor(); //Calls the InteractDoor method on the current Door
+        }
+    }
+
+    //Sets the current door that the player is interacting with
+    public void SetCurrentDoor(Door door)
+    {
+        CurrentDoor = door;
+    }
 }
