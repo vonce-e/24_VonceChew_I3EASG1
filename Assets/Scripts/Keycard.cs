@@ -63,19 +63,5 @@ public class Keycard : MonoBehaviour
     {
         //Make Keycard spin
         transform.localRotation = Quaternion.Euler(90f, Time.time * 100f, 0);
-
-        //Check if all keycards are collected and display the purple door hint message
-        if (GameManager.Instance.redKeycardCollected == true && GameManager.Instance.blueKeycardCollected == true && GameManager.Instance.greenKeycardCollected == true)
-        {
-            GameManager.Instance.redKeyCardCheckbox.gameObject.SetActive(false); //Deactivates the red keycard checkbox in the UI
-            GameManager.Instance.blueKeyCardCheckbox.SetActive(false); //Deactivates the blue keycard checkbox in the UI
-            GameManager.Instance.greenKeyCardCheckbox.SetActive(false); //Deactivates the green keycard checkbox in the UI
-
-            GameManager.Instance.redKeyCardText.gameObject.SetActive(false); //Deactivates the red keycard text in the UI
-            GameManager.Instance.blueKeyCardText.gameObject.SetActive(false); //Deactivates the blue keycard text in the UI
-            GameManager.Instance.greenKeyCardText.gameObject.SetActive(false); //Deactivates the green keycard text in the UI
-
-            GameManager.Instance.purpleDoorHintMessage.gameObject.SetActive(true); //Activates the purple door hint message in the UI
-        }
     }
 }
