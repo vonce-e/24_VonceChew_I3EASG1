@@ -6,6 +6,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using Mono.Cecil.Cil;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -15,7 +16,8 @@ public class Door : MonoBehaviour
     {
         Red,
         Blue,
-        Green
+        Green,
+        Purple
     }
 
     [Header("Door Settings")]
@@ -52,7 +54,7 @@ public class Door : MonoBehaviour
             GameManager.Instance.doorLockedPanel.gameObject.SetActive(true); //Activates the door locked panel
         }
 
-        if (other.gameObject.tag == "Player" && keycardColor == KeycardColor.Red && GameManager.Instance.redKeycardCollected == false)
+        if (other.gameObject.tag == "Player" && keycardColor == KeycardColor.Blue && GameManager.Instance.blueKeycardCollected == false)
         {
             CanInteract = false;
             GameManager.Instance.doorLockedHeaderMessage.gameObject.SetActive(true); //Activates the door locked header message
@@ -60,9 +62,22 @@ public class Door : MonoBehaviour
             GameManager.Instance.doorLockedPanel.gameObject.SetActive(true); //Activates the door locked panel
         }
 
+        if (other.gameObject.tag == "Player" && keycardColor == KeycardColor.Purple)
+        {
+            if (GameManager.Instance.redKeycardCollected == false || GameManager.Instance.greenKeycardCollected == false || GameManager.Instance.blueKeycardCollected == false)
+            {
+                CanInteract = false;
+                GameManager.Instance.doorLockedHeaderMessage.gameObject.SetActive(true); //Activates the door locked header message
+                GameManager.Instance.doorLockedMessage.gameObject.SetActive(true); //Activates the door locked message
+                GameManager.Instance.doorLockedPanel.gameObject.SetActive(true); //Activates the door locked panel
+            }
+        }
+
         if (other.gameObject.tag == "Player")
+        {
             CanInteract = true;
-        other.GetComponent<PlayerInteraction>().SetCurrentDoor(this);
+            other.GetComponent<PlayerInteraction>().SetCurrentDoor(this);
+        }
     }
 
     //Method called when the player exits the trigger collider of the door
@@ -91,7 +106,7 @@ public class Door : MonoBehaviour
         {
             if (DoorOpen == false)
             {
-                //Checks if the player has the correct keycard to open the door
+                //Checks if the player has the correct keycard to open each door
 
                 if (keycardColor == KeycardColor.Red && GameManager.Instance.redKeycardCollected == true)
                 {
@@ -106,6 +121,12 @@ public class Door : MonoBehaviour
                 }
 
                 if (keycardColor == KeycardColor.Green && GameManager.Instance.greenKeycardCollected == true)
+                {
+                    OpenDoor();
+                    DoorOpen = true;
+                }
+
+                if (keycardColor == KeycardColor.Purple && GameManager.Instance.redKeycardCollected == true && GameManager.Instance.greenKeycardCollected == true && GameManager.Instance.blueKeycardCollected == true)
                 {
                     OpenDoor();
                     DoorOpen = true;
