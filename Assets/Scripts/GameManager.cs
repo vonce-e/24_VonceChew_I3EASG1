@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     //General variables
 
     [SerializeField] PlayerInteraction playerInteraction; //Reference to the PlayerInteraction script
+    [SerializeField] CharacterTeleport characterTeleport; //Reference to the CharacterTeleport script
 
     //Keycard Related Variables
     public bool redKeycardCollected = false;
@@ -84,13 +85,14 @@ public class GameManager : MonoBehaviour
 
             HealthUpdate(); //Updates the health UI
             LivesUpdate(); //Updates the lives UI
-            
             Debug.Log("You have " + lives + " lives left."); //Logs the number of lives left
+            characterTeleport.TeleportToTarget(); //Teleports the player to the target position
 
             if (lives <= 0) //Checks if there are no lives left
             {
                 Debug.Log("Game Over!"); //Logs game over message   
-                Destroy(gameObject); //Destroys the GameManager object
+                Destroy(GameManager.Instance.gameObject); //Destroys the GameManager object
+                SceneManager.LoadScene(0); //Loads the Game Over scene
             }
         }
 
@@ -137,5 +139,13 @@ public class GameManager : MonoBehaviour
         {
             allSpecialCollectiblesText.color = Color.green; //Changes the text color to green
         }
+    }
+
+    public void RestartGame()
+    {
+        Destroy(GameManager.Instance.gameObject); //Destroys the GameManager object
+        SceneManager.LoadScene(0); //Loads the Game Over scene
+        Cursor.lockState = CursorLockMode.Locked; //Locks the cursor
+        Time.timeScale = 1f; //Restores normal time
     }
 }

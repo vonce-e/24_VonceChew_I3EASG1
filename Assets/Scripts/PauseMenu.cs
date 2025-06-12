@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0f; //Freezes all time-based movement
         isPaused = true;
+        Cursor.lockState = CursorLockMode.None; //Unlocks the cursor
 
         pauseMenuUI.SetActive(true);
     }
@@ -45,6 +46,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = false;
 
         pauseMenuUI.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked; //Locks the cursor back to the game window
     }
     public void ReloadCurrentScene()
     {
