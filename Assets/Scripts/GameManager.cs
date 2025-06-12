@@ -8,10 +8,13 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     //General variables
+
+    [SerializeField] PlayerInteraction playerInteraction; //Reference to the PlayerInteraction script
 
     //Keycard Related Variables
     public bool redKeycardCollected = false;
@@ -77,6 +80,7 @@ public class GameManager : MonoBehaviour
         {
             lives -= 1; //Decreases the number of lives by 1
             health = 100; //Resets health to 100
+            playerInteraction.ResetPosition(); //Resets the player's position to the start position
 
             HealthUpdate(); //Updates the health UI
             LivesUpdate(); //Updates the lives UI
@@ -86,7 +90,7 @@ public class GameManager : MonoBehaviour
             if (lives <= 0) //Checks if there are no lives left
             {
                 Debug.Log("Game Over!"); //Logs game over message   
-                //Game over logic
+                Destroy(gameObject); //Destroys the GameManager object
             }
         }
 

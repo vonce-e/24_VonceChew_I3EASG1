@@ -10,6 +10,8 @@ using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    [SerializeField] GameObject playerCapsule; //Reference to the player capsule GameObject
+
     //Raycasting variables
     public Transform playerCamera; //Gets location of player camera
     public float interactionDistance = 5f; //Sets the distance for raycast interactions
@@ -23,6 +25,9 @@ public class PlayerInteraction : MonoBehaviour
     private SpecialCollectible currentSpecial; //Stores the current special collectible item
     private Door currentDoor; //Stores the current door item
     private Medkit currentMedkit; //Stores the current medkit item   
+
+    //Start position of the player
+    private Vector3 startPosition;
 
     Door CurrentDoor; //Stores door variable
 
@@ -143,4 +148,23 @@ public class PlayerInteraction : MonoBehaviour
     {
         CurrentDoor = door;
     }
+
+    //Resets the current door when the player exits the interaction area
+    void Start()
+    {
+        startPosition = transform.position; //Sets the start position of the player in the GameManager
+        Debug.Log(startPosition); //Logs the start position to the console  
+    }
+
+    //Resets the player's position and health
+    public void ResetPosition()
+    {
+        playerCapsule.transform.position = startPosition; //Resets the player's position to the start position  
+        GameManager.Instance.health = 100; //Resets health to 100
+        GameManager.Instance.HealthUpdate(); //Updates the health UI
+        GameManager.Instance.LivesUpdate(); //Updates the lives UI
+        Debug.Log("Player position reset to start position."); //Logs reset message
+
+    }
+
 }
