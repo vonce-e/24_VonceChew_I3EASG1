@@ -17,6 +17,7 @@ public class Door : MonoBehaviour
         Red,
         Blue,
         Green,
+        Black,
         Purple
     }
 
@@ -64,7 +65,7 @@ public class Door : MonoBehaviour
 
         if (other.gameObject.tag == "Player" && keycardColor == KeycardColor.Purple)
         {
-            if (GameManager.Instance.redKeycardCollected == false || GameManager.Instance.greenKeycardCollected == false || GameManager.Instance.blueKeycardCollected == false)
+            if (GameManager.Instance.redKeycardCollected == false || GameManager.Instance.greenKeycardCollected == false || GameManager.Instance.blueKeycardCollected == false || GameManager.Instance.blackKeycardCollected == false)
             {
                 CanInteract = false;
                 GameManager.Instance.doorLockedHeaderMessage.gameObject.SetActive(true); //Activates the door locked header message
@@ -126,7 +127,13 @@ public class Door : MonoBehaviour
                     DoorOpen = true;
                 }
 
-                if (keycardColor == KeycardColor.Purple && GameManager.Instance.redKeycardCollected == true && GameManager.Instance.greenKeycardCollected == true && GameManager.Instance.blueKeycardCollected == true)
+                if (keycardColor == KeycardColor.Black && GameManager.Instance.blackKeycardCollected == true)
+                {
+                    OpenDoor();
+                    DoorOpen = true;
+                }
+
+                if (keycardColor == KeycardColor.Purple && GameManager.Instance.redKeycardCollected == true && GameManager.Instance.greenKeycardCollected == true && GameManager.Instance.blueKeycardCollected == true && GameManager.Instance.blackKeycardCollected == true)
                 {
                     OpenDoor();
                     DoorOpen = true;

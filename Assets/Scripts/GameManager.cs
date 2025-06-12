@@ -21,14 +21,17 @@ public class GameManager : MonoBehaviour
     public bool redKeycardCollected = false;
     public bool blueKeycardCollected = false;
     public bool greenKeycardCollected = false;
+    public bool blackKeycardCollected = false;
 
     public GameObject redKeyCardCheckboxBackground; //Checkbox Background for red keycard
     public GameObject blueKeyCardCheckboxBackground; //Checkbox Background for blue keycard
     public GameObject greenKeyCardCheckboxBackground; //Checkbox Background for green keycard
+    public GameObject blackKeyCardCheckboxBackground; //Checkbox Background for black keycard
 
     public GameObject redKeyCardCheckbox; //Checkbox for red keycard
     public GameObject blueKeyCardCheckbox; //Checkbox for blue keycard
     public GameObject greenKeyCardCheckbox; //Checkbox for green keycard
+    public GameObject blackKeyCardCheckbox; //Checkbox for black keycard
 
     public int points = 0; //Player's points
     public float health = 100; //Player's health
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text redKeyCardText; //UI Text to display red keycard status
     public TMP_Text blueKeyCardText; //UI Text to display blue keycard status   
     public TMP_Text greenKeyCardText; //UI Text to display green keycard status
+    public TMP_Text blackKeyCardText; //UI Text to display black keycard status
     public TMP_Text purpleDoorHintMessage; //UI Text to display hint for purple door
 
     public TMP_Text doorLockedHeaderMessage; //UI Text to display door locked header message
@@ -97,19 +101,23 @@ public class GameManager : MonoBehaviour
         }
 
         //Check if all keycards are collected and display the purple door hint message
-        if (redKeycardCollected == true && blueKeycardCollected == true && greenKeycardCollected == true)
+        if (redKeycardCollected == true && blueKeycardCollected == true && greenKeycardCollected == true && blackKeycardCollected == true)
         {
             redKeyCardCheckbox.gameObject.SetActive(false); //Deactivates the red keycard checkbox in the UI
             blueKeyCardCheckbox.SetActive(false); //Deactivates the blue keycard checkbox in the UI
             greenKeyCardCheckbox.SetActive(false); //Deactivates the green keycard checkbox in the UI
+            blackKeyCardCheckbox.SetActive(false); //Deactivates the black keycard checkbox in the UI
 
             redKeyCardText.gameObject.SetActive(false); //Deactivates the red keycard text in the UI
             blueKeyCardText.gameObject.SetActive(false); //Deactivates the blue keycard text in the UI
             greenKeyCardText.gameObject.SetActive(false); //Deactivates the green keycard text in the UI
+            blackKeyCardText.gameObject.SetActive(false); //Deactivates the black keycard text in the UI
 
             redKeyCardCheckboxBackground.SetActive(false); //Deactivates the red keycard checkbox background in the UI
             blueKeyCardCheckboxBackground.SetActive(false); //Deactivates the blue keycard checkbox background in the UI    
             greenKeyCardCheckboxBackground.SetActive(false); //Deactivates the green keycard checkbox background in the UI
+            blackKeyCardCheckboxBackground.SetActive(false); //Deactivates the black keycard checkbox background in the UI  
+
 
             purpleDoorHintMessage.gameObject.SetActive(true); //Activates the purple door hint message in the UI
         }

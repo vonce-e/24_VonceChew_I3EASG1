@@ -15,7 +15,8 @@ public class Keycard : MonoBehaviour
     {
         Red,
         Blue,
-        Green
+        Green,
+        Black
     }
     [Header("Keycard Settings")]
 
@@ -50,8 +51,15 @@ public class Keycard : MonoBehaviour
             GameManager.Instance.greenKeyCardText.color = Color.green; //Changes the text color of the green keycard to green in the UI
         }
 
-            // Increment points in GameManager
-            GameManager.Instance.points += 30;
+        else if (keycardColor == Keycardcolor.Black)
+        {
+            GameManager.Instance.blackKeycardCollected = true;
+            GameManager.Instance.blackKeyCardCheckbox.SetActive(true); //Activates the keycard checkbox in the UI
+            GameManager.Instance.blackKeyCardText.color = Color.green; //Changes the text color of the green keycard to green in the UI
+        }
+
+        // Increment points in GameManager
+        GameManager.Instance.points += 30;
 
         // Update points display in GameManager
         GameManager.Instance.PointsUpdate();
