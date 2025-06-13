@@ -10,6 +10,9 @@ using UnityEngine;
 public class Keycard : MonoBehaviour
 
 {
+
+    [SerializeField] AudioClip collected; //Audio clip to play when the item is collected
+
     //Enum to define keycard colors
     public enum Keycardcolor
     {
@@ -63,6 +66,8 @@ public class Keycard : MonoBehaviour
 
         // Update points display in GameManager
         GameManager.Instance.PointsUpdate();
+
+        AudioSource.PlayClipAtPoint(collected, transform.position); //Play the collected sound at the item's position
 
         //Destroys keycard after collection
         Destroy(gameObject);

@@ -7,6 +7,7 @@
 using UnityEngine;
 public class Collectibles : MonoBehaviour
 {
+    [SerializeField] AudioClip collected; //Audio clip to play when the item is collected
     public void Interact()
     {
         //Logic for collecting the item
@@ -18,7 +19,7 @@ public class Collectibles : MonoBehaviour
         // Update points display in GameManager
         GameManager.Instance.PointsUpdate();
 
-
+        AudioSource.PlayClipAtPoint(collected, transform.position); //Play the collected sound at the item's position
 
         //Destroys collectible after collection
         Destroy(gameObject);

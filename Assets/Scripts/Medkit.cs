@@ -7,6 +7,8 @@
 using UnityEngine;
 public class Medkit : MonoBehaviour
 {
+    [SerializeField] AudioClip collected; //Audio clip to play when the item is collected
+
     public void Interact()
     {
         //Logic for collecting the item
@@ -17,6 +19,8 @@ public class Medkit : MonoBehaviour
 
         // Update points display in GameManager
         GameManager.Instance.HealthUpdate();
+
+        AudioSource.PlayClipAtPoint(collected, transform.position); //Play the collected sound at the item's position
 
         //Destroys collectible after collection
         Destroy(gameObject);
