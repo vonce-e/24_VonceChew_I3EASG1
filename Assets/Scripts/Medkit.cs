@@ -13,6 +13,12 @@ public class Medkit : MonoBehaviour
     {
         //Logic for collecting the item
         Debug.Log(gameObject.name + "collected.");
+        
+        if (GameManager.Instance.health >= 100)
+        {
+            Debug.Log("Health is already full, cannot collect medkit.");
+            return; // Exit if health is already full
+        }
 
         // Increment points in GameManager
         GameManager.Instance.health += 25;
