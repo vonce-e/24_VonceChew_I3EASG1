@@ -68,6 +68,13 @@ public class GameManager : MonoBehaviour
 
     public int damageTaken = 0; //Tracks the amount of damage taken by the player
 
+    public TMP_Text congratulatoryMessageText; //UI Text to display congratulatory message
+    public TMP_Text pointsStatsText; //UI Text to display points stats
+    public TMP_Text livesStatsText; //UI Text to display lives stats
+    public TMP_Text damageStatsText; //UI Text to display damage stats
+    public TMP_Text specialItemsStatsText; //UI Text to display special items stats
+    public GameObject endGameRestartButton; //Button to restart the game at the end
+
     private void Awake()
     {
         //Singleton pattern to ensure only one instance of GameManager exists
@@ -153,9 +160,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Updates the keycard UI elements
     public void GameOver()
     {
+        pointsStatsText.text = "Points : " + points.ToString(); //Updates the points stats text
+        livesStatsText.text = "Lives left : " + lives.ToString(); //Updates the lives stats text
+        damageStatsText.text = "Damage Taken : " + damageTaken.ToString(); //Updates the damage stats text
+        specialItemsStatsText.text = "Special Items Collected : " + specialCollectibles.ToString(); //Updates the special items stats text
+
         endGameMenuBackground.SetActive(true); //Activates the end game menu background
+        congratulatoryMessageText.gameObject.SetActive(true); //Activates the congratulatory message text
+        pointsStatsText.gameObject.SetActive(true); //Activates the points stats text
+        livesStatsText.gameObject.SetActive(true); //Activates the lives stats text
+        damageStatsText.gameObject.SetActive(true); //Activates the damage stats text
+        specialItemsStatsText.gameObject.SetActive(true); //Activates the special items stats text
+        endGameRestartButton.SetActive(true); //Activates the restart button in the end game menu
+
+
         Cursor.lockState = CursorLockMode.None; //Unlocks the cursor
         Time.timeScale = 0f; //Pauses the game time
     }

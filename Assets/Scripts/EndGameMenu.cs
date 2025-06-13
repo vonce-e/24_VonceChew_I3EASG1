@@ -1,3 +1,9 @@
+/*
+ * Author : Vonce Chew
+ * Date of Creation : 13th June 2025
+ * Script Function : End Game Menu script that handles the end game menu in the game.
+ */
+
 using Unity.VisualScripting;
 using UnityEngine;
 

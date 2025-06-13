@@ -1,8 +1,6 @@
 using UnityEngine;
 
-/// <summary>
-/// Teleports the player to a predefined target position when called.
-/// </summary>
+//Teleports the player to a predefined target position when called.
 public class CharacterTeleport : MonoBehaviour
 {
 private CharacterController controller;
@@ -20,19 +18,15 @@ private CharacterController controller;
         rb = GetComponent<Rigidbody>();
     }
 
-    /// <summary>
-    /// Teleports the character and camera root to the targetPosition.
-    /// </summary>
+    //Teleports the character and camera root to the targetPosition.
     public void TeleportToTarget()
     {
         TeleportTo(targetPosition);
     }
 
-    /// <summary>
-    /// Teleports the character and camera root to the specified position.
-    /// Properly handles CharacterController and Rigidbody components.
-    /// </summary>
-    /// <param name="newPosition">The new world position to teleport to.</param>
+    //Teleports the character and camera root to the specified position.
+    //Properly handles CharacterController and Rigidbody components.
+    //The new world position to teleport to.
     public void TeleportTo(Vector3 newPosition)
     {
         if (controller != null)
@@ -42,11 +36,11 @@ private CharacterController controller;
 
         if (rb != null)
         {
-            // Optional: disable physics during teleport to avoid glitches
+            //Disable physics during teleport to avoid glitches
             rb.isKinematic = true;
         }
 
-        // Set position
+        //Set position
         transform.position = newPosition;
 
         if (controller != null)
@@ -57,7 +51,7 @@ private CharacterController controller;
         if (rb != null)
         {
             rb.isKinematic = false;
-            // Reset velocity to stop any residual motion
+            //Reset velocity to stop any residual motion
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }

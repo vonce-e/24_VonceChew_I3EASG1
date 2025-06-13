@@ -26,8 +26,8 @@ public class LavaHazard : MonoBehaviour
         if (other.CompareTag(targetTag) && damageCoroutine == null)
         {
             damageCoroutine = StartCoroutine(ApplyDamageOverTime());
-            GameManager.Instance.warningText.gameObject.SetActive(true); // Show warning text when entering hazard
-            GameManager.Instance.warningPanel.SetActive(true); // Show warning panel when entering hazard
+            GameManager.Instance.warningText.gameObject.SetActive(true); //Show warning text when entering hazard
+            GameManager.Instance.warningPanel.SetActive(true); //Show warning panel when entering hazard
         }
     }
 
@@ -35,8 +35,8 @@ public class LavaHazard : MonoBehaviour
     {
         if (other.CompareTag(targetTag) && damageCoroutine != null)
         {
-            GameManager.Instance.warningText.gameObject.SetActive(false); // Show warning text when entering hazard
-            GameManager.Instance.warningPanel.SetActive(false); // Show warning panel when entering hazard
+            GameManager.Instance.warningText.gameObject.SetActive(false); //Show warning text when entering hazard
+            GameManager.Instance.warningPanel.SetActive(false); //Show warning panel when entering hazard
 
             StopCoroutine(damageCoroutine);
             damageCoroutine = null;
@@ -52,7 +52,8 @@ public class LavaHazard : MonoBehaviour
             {
                 GameManager.Instance.health -= damagePerTick;
                 Debug.Log($"Player took {damagePerTick} damage. Current health: {GameManager.Instance.health}");
-                GameManager.Instance.HealthUpdate(); // Update health UI in GameManager
+                GameManager.Instance.damageTaken += (int)damagePerTick; //Increment damage taken by the amount of damage dealt
+                GameManager.Instance.HealthUpdate(); //Update health UI in GameManager
             }
 
             yield return new WaitForSeconds(tickInterval);
