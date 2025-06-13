@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] PlayerInteraction playerInteraction; //Reference to the PlayerInteraction script
     [SerializeField] CharacterTeleport characterTeleport; //Reference to the CharacterTeleport script
+    [SerializeField] AudioClip death; //Audio clip to play when the item is collected
 
     //Keycard Related Variables
     public bool redKeycardCollected = false;
@@ -94,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         if (health <= 0) //Checks if health is less than or equal to 0
         {
+            AudioSource.PlayClipAtPoint(death, transform.position); //Play the collected sound at the item's position
             lives -= 1; //Decreases the number of lives by 1
             health = 100; //Resets health to 100
             playerInteraction.ResetPosition(); //Resets the player's position to the start position
