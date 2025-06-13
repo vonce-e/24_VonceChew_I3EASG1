@@ -64,6 +64,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text warningText; //UI Text for warning background
     public GameObject warningPanel; //UI Panel for warning messages
 
+    public GameObject endGameMenuBackground; //Background for the end game menu
+
+    public int damageTaken = 0; //Tracks the amount of damage taken by the player
+
     private void Awake()
     {
         //Singleton pattern to ensure only one instance of GameManager exists
@@ -147,6 +151,13 @@ public class GameManager : MonoBehaviour
         {
             allSpecialCollectiblesText.color = Color.green; //Changes the text color to green
         }
+    }
+
+    public void GameOver()
+    {
+        endGameMenuBackground.SetActive(true); //Activates the end game menu background
+        Cursor.lockState = CursorLockMode.None; //Unlocks the cursor
+        Time.timeScale = 0f; //Pauses the game time
     }
 
     public void RestartGame()

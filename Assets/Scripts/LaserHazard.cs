@@ -61,8 +61,9 @@ public class LaserHazard : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.health -= damage;
+            GameManager.Instance.damageTaken += (int)damage; //Increment damage taken by the amount of damage dealt
             Debug.Log("Player hit by laser! Health: " + GameManager.Instance.health);
-            GameManager.Instance.HealthUpdate(); // Update health UI in GameManager
+            GameManager.Instance.HealthUpdate(); //Update health UI in GameManager
         }
     }
 }

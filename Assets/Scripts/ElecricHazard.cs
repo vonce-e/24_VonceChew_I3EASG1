@@ -13,6 +13,7 @@ public class ElecricHazard : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             GameManager.Instance.health -= 100; // Decrease player lives by 1
+            GameManager.Instance.damageTaken += 100; // Increment damage taken by 100
 
             GameManager.Instance.HealthUpdate(); // Update the health UI
             GameManager.Instance.LivesUpdate(); // Update the lives UI
